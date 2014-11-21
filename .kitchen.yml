@@ -1,0 +1,24 @@
+---
+driver_plugin: vagrant
+
+provisioner:
+  require_chef_omnibus: false
+
+platforms:
+- name: squaresurf_influxdb_ubuntu64-1404
+  driver_config:
+    box: ubuntu-14.04-64bit-chef-2014-08-12
+    box_url: http://sourceforge.net/projects/flowboard-vagrant-boxes/files/ubuntu-14.04-64bit-chef-2014-08-12.box/download
+    network:
+    - ["private_network", {type: "dhcp"}]
+
+suites:
+- name: test
+  run_list:
+    - recipe[apt]
+    - recipe[squaresurf_influxdb::test]
+  attributes:
+    squaresurf_influxdb:
+      update_version: true
+      admin_username: testerton
+      admin_password: yupper
