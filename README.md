@@ -42,8 +42,8 @@ InfluxDB database user.
 * `password`  - Password for the user.
 * `database`  - The database the user will have access to.
 * `admin`     - A bool whether or not the user is a database admin. (default: false)
-* `read\_from` - A regex to match the series the user can read from. (default: '.\*')
-* `write\_to`  - A regex to match the series the user can write to. (default: '.\*')
+* `read_from` - A regex to match the series the user can read from. (default: '.\*')
+* `write_to`  - A regex to match the series the user can write to. (default: '.\*')
 
 #### Examples
 
@@ -67,6 +67,7 @@ squaresurf_infludb_user 'old_user' do
   action :delete
   database 'sensitive data'
 end
+```
 
 ### squaresurf\_influxdb\_cluster\_admin
 
@@ -100,6 +101,7 @@ end
 squaresurf_infludb_cluster_admin 'old_cluster_admin' do
   action :delete
 end
+```
 
 ### squaresurf\_influxdb\_database
 
@@ -129,6 +131,7 @@ squaresurf_influxdb_database 'metrics'
 squaresurf_infludb_database 'old_project_name' do
   action :delete
 end
+```
 
 Recipes
 -------
@@ -249,7 +252,7 @@ cluster admin password that anyone can connect to your server with.
 
 ### squaresurf\_influxdb::default
 
-Either include the recipe in your *run\_list* or `include\_recipe` from within
+Either include the recipe in your *run\_list* or `include_recipe` from within
 one of your recipes. For example you could do the following to setup influxdb
 and create a database named *metrics* and a user named *sensu*.
 
@@ -302,7 +305,7 @@ Contributing
 ------------
 
 1. Fork the repository on Github
-2. Create a named feature branch (like `add\_component\_x`)
+2. Create a named feature branch (like `add_component_x`)
 3. Write your change
 4. Write tests for your change
 5. Run the tests, ensuring they all pass
@@ -322,11 +325,11 @@ There is a Rakefile with tasks to make testing easy. You will probably need to
 
 ### config and benchmark\_config attribute generation
 
-There is a convenience script `toml\_to\_attr.rb` to help generate the config and
+There is a convenience script `toml_to_attr.rb` to help generate the config and
 benchmark\_config ruby hashes from a default toml file included with influxdb.
 
 If you haven't run `bundle install` for the test suite above you'll probably
-need to do so in order to run `toml\_to\_attr.rb`.
+need to do so in order to run `toml_to_attr.rb`.
 
 License and Authors
 -------------------
