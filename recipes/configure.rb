@@ -47,5 +47,6 @@ end
 squaresurf_influxdb_cluster_admin 'root-delete' do
   action :delete
   username 'root'
-  only_if { node.squaresurf_influxdb.admin_username != 'root' }
+  admin = node.squaresurf_influxdb.admin_username
+  not_if { !admin || admin.empty? || admin == 'root' }
 end
