@@ -2,7 +2,7 @@ default.squaresurf_influxdb.fail_on_error = true
 
 default.squaresurf_influxdb.version = :latest
 default.squaresurf_influxdb.update_version = false
-default.squaresurf_influxdb.client_retries = 10
+default.squaresurf_influxdb.client_retries = 20
 default.squaresurf_influxdb.client_hosts = ['localhost']
 default.squaresurf_influxdb.client_use_ssl = false
 
