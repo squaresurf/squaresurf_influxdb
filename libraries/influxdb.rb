@@ -78,6 +78,12 @@ module SquaresurfInfluxDB
       end
     end
 
+    def self.cluster_admin_cannot_connect
+      fail self, "We can't connect to influxdb with the cluster admin "\
+        'credentials set. Are you sure that you have the correct cluster '\
+        'admin username and password set?'
+    end
+
     def self.missing_node
       # We can't check the attributes to know if we should log instead of fail.
       fail self, "We can't connect to influxdb and configure it if we don't "\
@@ -170,19 +176,27 @@ module SquaresurfInfluxDB
       ]
     end
 
+    def self.init_client(user, pass)
+      SquaresurfInfluxDB.get_client(user, pass)
+    rescue InfluxDB::AuthenticationError
+      false
+    end
+
     # The main cluster admin client.
     def self.client
       return @client if @client
 
       potential_users.each do |user|
         potential_passes.each do |pass|
-          begin
-            return @client = SquaresurfInfluxDB.get_client(user, pass)
-          rescue InfluxDB::AuthenticationError
-            @client = false
-          end
+          @client = init_client(user, pass)
+          break if @client
         end
+        break if @client
       end
+
+      SquaresurfInfluxDB::Error.cluster_admin_cannot_connect unless @client
+
+      @client
     end
 
     def self.list
