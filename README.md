@@ -200,6 +200,7 @@ order to configure users, cluster admins, and databases.
 #### default.squaresurf\_influxdb.client\_retries = 10
 
 This is how many times we should try to connect to InfluxDB before giving up.
+Set this to nil or '-1' to retry indefinitely.
 
 #### default.squaresurf\_influxdb.client\_hosts = ['localhost']
 
