@@ -3,6 +3,12 @@ squaresurf_influxdb CHANGELOG
 
 This file is used to list changes made in each version of the squaresurf_influxdb cookbook.
 
+v0.1.4
+------
+- [squaresurf] Updates the configure recipe to be more efficient and ensures
+  that the config files have the correct user and group.
+- [squaresurf] Simplifies the SquaresurfInfluxDB::ClusterAdmin.client.
+
 v0.1.3
 ------
 - [squaresurf] Removes unnecessary files.
