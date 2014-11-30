@@ -19,8 +19,7 @@ default.squaresurf_influxdb.config = {
     'file' => '/opt/influxdb/shared/log.txt'
   },
   'admin' => {
-    'port' => 8083,
-    'assets' => '/opt/influxdb/current/admin'
+    'port' => 8083
   },
   'api' => {
     'port' => 8086,
@@ -28,6 +27,9 @@ default.squaresurf_influxdb.config = {
   },
   'input_plugins' => {
     'graphite' => {
+      'enabled' => false
+    },
+    'collectd' => {
       'enabled' => false
     },
     'udp' => {
@@ -41,7 +43,8 @@ default.squaresurf_influxdb.config = {
   },
   'raft' => {
     'port' => 8090,
-    'dir' => '/opt/influxdb/shared/data/raft'
+    'dir' => '/opt/influxdb/shared/data/raft',
+    'debug' => false
   },
   'storage' => {
     'dir' => '/opt/influxdb/shared/data/db',
