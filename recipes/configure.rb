@@ -24,20 +24,24 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-service 'influxdb' do
-  supports [:restart, :status]
-  action [:enable, :start]
-end
-
 %w(config benchmark_config).each do |config|
   toml = SquaresurfInfluxDB::Config.generate_toml(
     node.squaresurf_influxdb[config])
 
-  file "/opt/influxdb/shared/#{config}.toml" do
+  filepath = "/opt/influxdb/shared/#{config}.toml"
+  file filepath do
+    user 'influxdb'
+    group 'influxdb'
     action :create
     content toml
-    notifies :restart, 'service[influxdb]', :immediately
+    # Notify service if we're updating the file.
+    notifies :restart, 'service[influxdb]', :immediately if File.exist? filepath
   end
+end
+
+service 'influxdb' do
+  supports [:restart, :status]
+  action [:enable, :start]
 end
 
 squaresurf_influxdb_cluster_admin node.squaresurf_influxdb.admin_username do
