@@ -3,6 +3,11 @@ squaresurf_influxdb CHANGELOG
 
 This file is used to list changes made in each version of the squaresurf_influxdb cookbook.
 
+v1.0.0
+------
+- [squaresurf] Updates the default config attributes for InfluxDB version
+  0.8.6.
+
 v0.1.4
 ------
 - [squaresurf] Updates the configure recipe to be more efficient and ensures
