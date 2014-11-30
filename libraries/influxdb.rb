@@ -186,11 +186,8 @@ module SquaresurfInfluxDB
     def self.client
       return @client if @client
 
-      potential_users.each do |user|
-        potential_passes.each do |pass|
-          @client = init_client(user, pass)
-          break if @client
-        end
+      potential_users.product(potential_passes) do |user, pass|
+        @client = init_client(user, pass)
         break if @client
       end
 
