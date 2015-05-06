@@ -54,7 +54,6 @@ describe 'squaresurf_influxdb::test_exceptions' do
   subject { ChefSpec::Runner.new.converge(described_recipe) }
 
   describe 'should fail' do
-
     context 'when library is missing node attributes' do
       should_fail('check_missing_node' => true)
       expect_error
@@ -84,11 +83,9 @@ describe 'squaresurf_influxdb::test_exceptions' do
       should_fail('check_set_cluster_admin_as_database_user' => true)
       expect_error
     end
-
   end
 
   describe 'should log and not fail' do
-
     context 'when library is missing node attributes' do
       should_not_fail('check_missing_node' => true)
       it { chef_run }
@@ -118,7 +115,5 @@ describe 'squaresurf_influxdb::test_exceptions' do
       should_not_fail('check_set_cluster_admin_as_database_user' => true)
       it { chef_run }
     end
-
   end
-
 end

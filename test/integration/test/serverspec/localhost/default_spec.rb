@@ -2,7 +2,6 @@ require 'serverspec_helper'
 require 'influxdb_helper'
 
 describe 'default recipe' do
-
   describe command('which influxdb') do
     its(:exit_status) { should eq 0 }
   end
@@ -34,5 +33,4 @@ describe 'default recipe' do
       it { should be_file }
     end
   end
-
 end

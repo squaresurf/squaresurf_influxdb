@@ -46,8 +46,8 @@ action :create do
       @new_resource.username, @new_resource.password)
 
     if user_exists && pass_correct
-      Chef::Log.info("#{@new_resource} has nothing to do to create "\
-                     + @new_resource.username)
+      Chef::Log.info("#{@new_resource} has nothing to do to " \
+                     "create #{@new_resource.username}")
     else
       if user_exists
         msg = "Update #{@new_resource.username} password"
@@ -78,8 +78,8 @@ action :delete do
         SquaresurfInfluxDB::ClusterAdmin.delete(@new_resource.username)
       end
     else
-      Chef::Log.info("#{@new_resource} has nothing to do to delete "\
-                     + @new_resource.username)
+      Chef::Log.info("#{@new_resource} has nothing to do to "\
+                    "delete #{@new_resource.username}")
     end
   rescue SquaresurfInfluxDB::Error => e
     e.fail_or_log(@run_context.node)

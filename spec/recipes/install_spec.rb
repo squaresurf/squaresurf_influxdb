@@ -7,7 +7,7 @@ describe 'squaresurf_influxdb::default' do
 
   context 'install once latest influxdb' do
     # This is the default action.
-    source = sprintf(remote_deb_format, 'latest', 'amd64')
+    source = format(remote_deb_format, 'latest', 'amd64')
     it do
       should create_if_missing_remote_file('/opt/influxdb.deb')
         .with(source: source)
@@ -16,7 +16,7 @@ describe 'squaresurf_influxdb::default' do
 
   context 'update once latest influxdb' do
     # This is the default action.
-    source = sprintf(remote_deb_format, 'latest', 'amd64')
+    source = format(remote_deb_format, 'latest', 'amd64')
 
     subject do
       ChefSpec::Runner.new do |node|
@@ -30,7 +30,7 @@ describe 'squaresurf_influxdb::default' do
   context 'install once specific influxdb version' do
     version = 'arbitrary'
     arch = 'i386'
-    source = sprintf(remote_deb_format, version, arch)
+    source = format(remote_deb_format, version, arch)
 
     subject do
       ChefSpec::Runner.new do |node|
@@ -48,7 +48,7 @@ describe 'squaresurf_influxdb::default' do
   context 'update specific influxdb version' do
     version = 'arbitrary'
     arch = 'i386'
-    source = sprintf(remote_deb_format, version, arch)
+    source = format(remote_deb_format, version, arch)
 
     subject do
       ChefSpec::Runner.new do |node|
@@ -64,5 +64,4 @@ describe 'squaresurf_influxdb::default' do
   it do
     should install_dpkg_package('influxdb').with(source: '/opt/influxdb.deb')
   end
-
 end

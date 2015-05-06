@@ -9,15 +9,15 @@ describe 'squaresurf_influxdb::configure' do
 
   it do
     should enable_service('influxdb').with(
-    supports: { restart: true, reload: false, status: true }
-  )
+      supports: { restart: true, reload: false, status: true }
+    )
   end
 
   it { should start_service('influxdb') }
 
   it do
     should create_squaresurf_influxdb_cluster_admin('root')
-       .with(password: 'root', username: 'root')
+      .with(password: 'root', username: 'root')
   end
   it { should_not delete_squaresurf_influxdb_cluster_admin('root') }
 
@@ -31,11 +31,11 @@ describe 'squaresurf_influxdb::configure' do
 
     it do
       should create_squaresurf_influxdb_cluster_admin('testerton')
-         .with(password: 'yah', username: 'testerton')
+        .with(password: 'yah', username: 'testerton')
     end
     it do
       should delete_squaresurf_influxdb_cluster_admin('root-delete')
-      .with(username: 'root')
+        .with(username: 'root')
     end
   end
 end

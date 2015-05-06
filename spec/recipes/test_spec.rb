@@ -13,77 +13,77 @@ describe 'squaresurf_influxdb::test' do
   it { should create_squaresurf_influxdb_database('testdb2') }
   it do
     should delete_squaresurf_influxdb_database('testdb2-delete')
-       .with(database: 'testdb2')
+      .with(database: 'testdb2')
   end
 
   it do
     should create_squaresurf_influxdb_cluster_admin('tester_cluster_admin')
-       .with(password: 'tester')
+      .with(password: 'tester')
   end
 
   it do
     should create_squaresurf_influxdb_cluster_admin('tester_cluster_admin2')
-       .with(password: 'tester')
+      .with(password: 'tester')
   end
   it do
     should delete_squaresurf_influxdb_cluster_admin(
       'tester_cluster_admin2-delete')
-       .with(username: 'tester_cluster_admin2')
+      .with(username: 'tester_cluster_admin2')
   end
 
   it do
     should create_squaresurf_influxdb_user('tester_db_user')
-       .with(password: 'tester', database: 'testdb')
+      .with(password: 'tester', database: 'testdb')
   end
 
   it do
     should create_squaresurf_influxdb_user('tester_db_user2')
-       .with(password: 'tester', database: 'testdb')
+      .with(password: 'tester', database: 'testdb')
   end
   it do
     should delete_squaresurf_influxdb_user('tester_db_user2-delete')
-       .with(database: 'testdb', username: 'tester_db_user2')
+      .with(database: 'testdb', username: 'tester_db_user2')
   end
 
   it do
     should create_squaresurf_influxdb_user('tester_db_admin')
-       .with(password: 'tester', database: 'testdb', admin: true)
+      .with(password: 'tester', database: 'testdb', admin: true)
   end
 
   it do
     should create_squaresurf_influxdb_user('tester_db_admin2')
-       .with(password: 'tester', database: 'testdb', admin: true)
+      .with(password: 'tester', database: 'testdb', admin: true)
   end
   it do
     should delete_squaresurf_influxdb_user('tester_db_admin2-delete')
-       .with(database: 'testdb', username: 'tester_db_admin2')
+      .with(database: 'testdb', username: 'tester_db_admin2')
   end
 
   it do
     should create_squaresurf_influxdb_user('tester_read_only_user')
-       .with(password: 'tester', database: 'testdb', write_to: ' ')
+      .with(password: 'tester', database: 'testdb', write_to: ' ')
   end
 
   it do
     should create_squaresurf_influxdb_user('tester_read_only_user2')
-       .with(password: 'tester', database: 'testdb', write_to: ' ')
+      .with(password: 'tester', database: 'testdb', write_to: ' ')
   end
   it do
     should delete_squaresurf_influxdb_user('tester_read_only_user2-delete')
-       .with(database: 'testdb', username: 'tester_read_only_user2')
+      .with(database: 'testdb', username: 'tester_read_only_user2')
   end
 
   it do
     should create_squaresurf_influxdb_user('tester_write_only_user')
-       .with(password: 'tester', database: 'testdb', read_from: ' ')
+      .with(password: 'tester', database: 'testdb', read_from: ' ')
   end
 
   it do
     should create_squaresurf_influxdb_user('tester_write_only_user2')
-       .with(password: 'tester', database: 'testdb', read_from: ' ')
+      .with(password: 'tester', database: 'testdb', read_from: ' ')
   end
   it do
     should delete_squaresurf_influxdb_user('tester_write_only_user2-delete')
-       .with(database: 'testdb', username: 'tester_write_only_user2')
+      .with(database: 'testdb', username: 'tester_write_only_user2')
   end
 end

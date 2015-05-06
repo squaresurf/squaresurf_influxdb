@@ -2,7 +2,6 @@ require 'serverspec_helper'
 require 'influxdb_helper'
 
 describe 'test recipe' do
-
   describe 'deleted config should not exist' do
     describe file('/opt/influxdb/shared/config2.toml') do
       it { should_not be_file }
@@ -161,5 +160,4 @@ describe 'test recipe' do
       its(:stdout) { should eq '204' }
     end
   end
-
 end

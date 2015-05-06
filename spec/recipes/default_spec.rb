@@ -5,5 +5,4 @@ describe 'squaresurf_influxdb::default' do
 
   it { should include_recipe 'squaresurf_influxdb::install' }
   it { should include_recipe 'squaresurf_influxdb::configure' }
-
 end
