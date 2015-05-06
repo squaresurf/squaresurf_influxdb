@@ -3,7 +3,7 @@ require_relative '../spec_helper'
 remote_deb_format = 'http://s3.amazonaws.com/influxdb/influxdb_%s_%s.deb'
 
 describe 'squaresurf_influxdb::default' do
-  subject { ChefSpec::Runner.new.converge(described_recipe) }
+  subject { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   context 'install once latest influxdb' do
     # This is the default action.
@@ -19,7 +19,7 @@ describe 'squaresurf_influxdb::default' do
     source = format(remote_deb_format, 'latest', 'amd64')
 
     subject do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['squaresurf_influxdb']['update_version'] = true
       end.converge(described_recipe)
     end
@@ -33,7 +33,7 @@ describe 'squaresurf_influxdb::default' do
     source = format(remote_deb_format, version, arch)
 
     subject do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['squaresurf_influxdb']['version'] = version
         node.automatic['kernel']['machine'] = arch
       end.converge(described_recipe)
@@ -51,7 +51,7 @@ describe 'squaresurf_influxdb::default' do
     source = format(remote_deb_format, version, arch)
 
     subject do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['squaresurf_influxdb']['version'] = version
         node.set['squaresurf_influxdb']['update_version'] = true
         node.automatic['kernel']['machine'] = arch

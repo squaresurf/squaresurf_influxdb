@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 
 describe 'squaresurf_influxdb::test' do
-  subject { ChefSpec::Runner.new.converge(described_recipe) }
+  subject { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   # For serverspecs to work properly
   it { should install_package('curl') }

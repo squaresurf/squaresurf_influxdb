@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 
 describe 'squaresurf_influxdb::configure' do
-  subject { ChefSpec::Runner.new.converge(described_recipe) }
+  subject { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   it { should create_file('/opt/influxdb/shared/config.toml') }
 
@@ -23,7 +23,7 @@ describe 'squaresurf_influxdb::configure' do
 
   context 'alternate admin username' do
     subject do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['squaresurf_influxdb']['admin_username'] = 'testerton'
         node.set['squaresurf_influxdb']['admin_password'] = 'yah'
       end.converge(described_recipe)

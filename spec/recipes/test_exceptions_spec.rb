@@ -26,7 +26,7 @@ end
 
 def let_chef_run(extra_params, log_level = :warn)
   let(:chef_run) do
-    ChefSpec::Runner.new chef_opts(log_level) do |node|
+    ChefSpec::SoloRunner.new chef_opts(log_level) do |node|
       attributes(extra_params).each do |key, value|
         node.set['squaresurf_influxdb'][key] = value
       end
@@ -51,7 +51,7 @@ def expect_error
 end
 
 describe 'squaresurf_influxdb::test_exceptions' do
-  subject { ChefSpec::Runner.new.converge(described_recipe) }
+  subject { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   describe 'should fail' do
     context 'when library is missing node attributes' do
