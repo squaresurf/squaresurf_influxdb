@@ -116,6 +116,7 @@ InfluxDB database.
 #### Attributes
 
 * `database` - Database name. (Defaults to the name of the block)
+* `options`  - An extra hash of options to send to the create api.
 
 #### Examples
 
@@ -123,6 +124,23 @@ InfluxDB database.
 
 ```ruby 
 squaresurf_influxdb_database 'metrics'
+```
+
+##### Create a database with a 30 day retention policy
+
+```ruby
+squaresurf_influxdb_database 'metrics' do
+  options spaces: [
+    {
+      name: 'default',
+      retentionPolicy: '30d',
+      shardDuration: '7d',
+      regEx: '/.*/',
+      replicationFactor: 1,
+      split: 1
+    }
+  ]
+end
 ```
 
 ##### Delete a database

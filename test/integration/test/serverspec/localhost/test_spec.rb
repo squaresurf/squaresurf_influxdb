@@ -1,3 +1,4 @@
+require 'json'
 require 'serverspec_helper'
 require 'influxdb_helper'
 
@@ -14,6 +15,24 @@ describe 'test recipe' do
 
   describe 'testdb2 should not exist' do
     name_exists_in_list(list_databases, 'testdb2', false)
+  end
+
+  describe 'testdb3 should be set up correctly' do
+    name_exists_in_list(list_databases, 'testdb3')
+    cmd = api_response("cluster/shard_spaces#{INFLUXDB_ADMIN_CREDS}")
+    describe command(cmd) do
+      expected = {
+        name: 'default',
+        database: 'testdb3',
+        regex: '/.*/',
+        retentionPolicy: '30d',
+        shardDuration: '7d',
+        replicationFactor: 1,
+        split: 1
+      }
+      escaped = Regexp.escape JSON.dump expected
+      its(:stdout) { should match(/#{escaped}/) }
+    end
   end
 
   describe 'tester_cluster_admin should exist' do

@@ -17,6 +17,23 @@ describe 'squaresurf_influxdb::test' do
   end
 
   it do
+    options = {
+      spaces: [
+        {
+          name: 'default',
+          retentionPolicy: '30d',
+          shardDuration: '7d',
+          regEx: '/.*/',
+          replicationFactor: 1,
+          split: 1
+        }
+      ]
+    }
+    should create_squaresurf_influxdb_database('testdb3')
+      .with(database: 'testdb3', options: options)
+  end
+
+  it do
     should create_squaresurf_influxdb_cluster_admin('tester_cluster_admin')
       .with(password: 'tester')
   end

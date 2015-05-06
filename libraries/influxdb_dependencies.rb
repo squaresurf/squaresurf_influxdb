@@ -36,8 +36,9 @@
 end
 
 # Monkey patch for InfluxDB::Client authentication methods. This monkey patch
-# won't be necessary if the following PR is merged and the gem is published.
-# https://github.com/influxdb/influxdb-ruby/pull/64
+# won't be necessary if the following PRs are merged and the gem is published.
+# * https://github.com/influxdb/influxdb-ruby/pull/64
+# * https://github.com/influxdb/influxdb-ruby/pull/85
 module InfluxDB
   # The client class
   class Client
@@ -68,6 +69,12 @@ module InfluxDB
           fail InfluxDB::Error.new, response.body
         end
       end
+    end
+
+    def create_database(name, options = {})
+      url = full_url("/cluster/database_configs/#{name}")
+      data = JSON.generate(options)
+      post(url, data)
     end
   end
 end

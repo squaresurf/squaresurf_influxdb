@@ -40,7 +40,8 @@ action :create do
                      "nothing for #{@new_resource} to do to create it.")
     else
       converge_by("Create #{@new_resource.database}") do
-        SquaresurfInfluxDB::Database.create(@new_resource.database)
+        SquaresurfInfluxDB::Database.create(
+          @new_resource.database, @new_resource.options)
       end
     end
   rescue SquaresurfInfluxDB::Error => e

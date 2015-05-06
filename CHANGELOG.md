@@ -1,7 +1,13 @@
 squaresurf_influxdb CHANGELOG
 ============================
 
-This file is used to list changes made in each version of the squaresurf_influxdb cookbook.
+This file is used to list changes made in each version of the
+squaresurf_influxdb cookbook.
+
+v1.1.0
+------
+- [squaresurf] Updates database creation to allow setting options such as the
+  retention policy.
 
 v1.0.0
 ------

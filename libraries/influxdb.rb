@@ -34,15 +34,21 @@ module SquaresurfInfluxDB
     @node
   end
 
-  def self.port_and_ssl_hash
-    use_ssl = node.squaresurf_influxdb.client_use_ssl
+  def self.port(key)
     api_config = node.squaresurf_influxdb.config.api.to_hash
-    if use_ssl && api_config.key?('ssl-port') && api_config['ssl-port']
-      return { port: api_config['ssl-port'], use_ssl: true }
-    elsif api_config.key?('port') && api_config['port']
-      return { port: api_config['port'], use_ssl: false }
+    if api_config.key?(key) && api_config[key]
+      return api_config.key(key)
     else
       SquaresurfInfluxDB::Error.unknown_port
+    end
+  end
+
+  def self.port_and_ssl_hash
+    use_ssl = node.squaresurf_influxdb.client_use_ssl
+    if use_ssl
+      return { port: port('ssl-port'), use_ssl: true }
+    else
+      return { port: port('port'), use_ssl: false }
     end
   end
 
@@ -134,8 +140,8 @@ module SquaresurfInfluxDB
       false
     end
 
-    def self.create(database)
-      SquaresurfInfluxDB::ClusterAdmin.client.create_database(database)
+    def self.create(database, options)
+      SquaresurfInfluxDB::ClusterAdmin.client.create_database(database, options)
       @databases.push('name' => database)
     end
 

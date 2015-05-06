@@ -37,6 +37,19 @@ squaresurf_influxdb_database 'testdb2-delete' do
   action :delete
 end
 
+squaresurf_influxdb_database 'testdb3' do
+  options spaces: [
+    {
+      name: 'default',
+      retentionPolicy: '30d',
+      shardDuration: '7d',
+      regEx: '/.*/',
+      replicationFactor: 1,
+      split: 1
+    }
+  ]
+end
+
 squaresurf_influxdb_cluster_admin 'tester_cluster_admin' do
   password 'tester'
 end
