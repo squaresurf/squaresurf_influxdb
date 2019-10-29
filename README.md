@@ -1,3 +1,7 @@
+:warning: NOT CURRENTLY MAINTAINED :warning:
+
+Open an issue if you would like to take over maintenance of this repo.
+
 SquareSurf InfluxDB Cookbook
 ===========================
 
