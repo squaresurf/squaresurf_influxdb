@@ -102,7 +102,7 @@ GEM
     influxdb (0.1.8)
       json
     ipaddress (0.8.0)
-    json (1.8.2)
+    json (2.3.1)
     kitchen-vagrant (0.17.0)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
